@@ -1,19 +1,19 @@
 CXXFLAGS:=-std=c++11 -O3
 
-all: ffb naive counting bitwise mem
+all: ffb naive counting bitwise memcheat
 
 
-mem.S: mem_gen.py fizzbuzz.txt
-	python mem_gen.py > mem.S
+memcheat.S: memcheat_gen.py fizzbuzz.txt
+	python memcheat_gen.py > memcheat.S
 
 fizzbuzz.txt: ffb
 	./ffb > fizzbuzz.txt
 
-mem.o: mem.S
-	as mem.S -o mem.o
+memcheat.o: memcheat.S
+	as memcheat.S -o memcheat.o
 
-mem: mem.o
-	ld mem.o -o mem
+memcheat: memcheat.o
+	ld memcheat.o -o memcheat
 
 ffb: ffb.o
 	$(CXX) $(CXXFLAGS) ffb.o -o ffb
@@ -40,4 +40,4 @@ bitwise.o: bitwise.cpp
 	$(CXX) $(CXXFLAGS) -c bitwise.cpp
 
 clean:
-	rm *.o ffb naive counting bitwise mem
+	rm *.o ffb naive counting bitwise memcheat
