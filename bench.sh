@@ -6,10 +6,10 @@ make &> /dev/null || echo "make failed"
 
 if [ $# -eq 0 ]
 then
-    for n in `ls bin`;
+    for n in `find bin/ py/ -type f -not -path '*/\.*'`;
     do
         echo "${n}:"
-        time (for i in $(seq ${RUNS}); do ./bin/${n} > /dev/null; done)
+        time (for i in $(seq ${RUNS}); do ./${n} > /dev/null; done)
         echo ""
     done
 else

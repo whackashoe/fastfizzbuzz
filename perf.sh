@@ -4,10 +4,9 @@ make &> /dev/null || echo "make failed"
 
 if [ $# -eq 0 ]
 then
-    for n in `ls bin`;
+    for n in `find bin/ py/ -type f -not -path '*/\.*'`;
     do
-        perf stat -ddd ./bin/${n} > /dev/null
-        echo ""
+        perf stat -ddd ./${n} > /dev/null
     done
 else
     perf stat -ddd ${1} > /dev/null
