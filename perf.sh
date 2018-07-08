@@ -1,5 +1,7 @@
 #!/bin/bash
 
+make &> /dev/null || echo "make failed"
+
 if [ $# -eq 0 ]
 then
     for n in `ls bin`;
