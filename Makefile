@@ -1,43 +1,28 @@
 CXXFLAGS:=-std=c++11 -O3
 
-all: ffb naive counting bitwise memcheat
+all: bin/ffb \
+	 bin/naive \
+	 bin/counting \
+	 bin/bitwise \
+	 bin/memcheat \
+	 bin/asm-naive \
+	 bin/asm-naive-parity \
+	 bin/asm-addition-parity
 
+bin/%: cpp/%.o
+	$(CXX) $(CXXFLAGS) $< -o $@
 
-memcheat.S: memcheat_gen.py fizzbuzz.txt
-	python memcheat_gen.py > memcheat.S
+bin/%: asm/%.o
+	$(LD) $< -o $@
 
-fizzbuzz.txt: ffb
-	./ffb > fizzbuzz.txt
+asm/%.o: asm/%.s
+	$(AS) $< -o $@
 
-memcheat.o: memcheat.S
-	as memcheat.S -o memcheat.o
+asm/memcheat.s: asm/memcheat_gen.py fizzbuzz.txt
+	python asm/memcheat_gen.py > asm/memcheat.s
 
-memcheat: memcheat.o
-	ld memcheat.o -o memcheat
-
-ffb: ffb.o
-	$(CXX) $(CXXFLAGS) ffb.o -o ffb
-
-ffb.o: ffb.cpp
-	$(CXX) $(CXXFLAGS) -c ffb.cpp
-
-naive: naive.o
-	$(CXX) $(CXXFLAGS) naive.o -o naive
-
-naive.o: naive.cpp
-	$(CXX) $(CXXFLAGS) -c naive.cpp
-
-counting: counting.o
-	$(CXX) $(CXXFLAGS) counting.o -o counting
-
-counting.o: counting.cpp
-	$(CXX) $(CXXFLAGS) -c counting.cpp
-
-bitwise: bitwise.o
-	$(CXX) $(CXXFLAGS) bitwise.o -o bitwise
-
-bitwise.o: bitwise.cpp
-	$(CXX) $(CXXFLAGS) -c bitwise.cpp
+fizzbuzz.txt: bin/ffb
+	./bin/ffb > fizzbuzz.txt
 
 clean:
-	rm *.o ffb naive counting bitwise memcheat
+	$(RM) *.o fizzbuzz.txt bin/*

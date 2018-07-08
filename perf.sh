@@ -1,7 +1,12 @@
 #!/bin/bash
 
-perf stat -ddd ./ffb > /dev/null
-perf stat -ddd ./naive > /dev/null
-perf stat -ddd ./counting > /dev/null
-perf stat -ddd ./bitwise > /dev/null
-
+if [ $# -eq 0 ]
+then
+    for n in `ls bin`;
+    do
+        perf stat -ddd ./bin/${n} > /dev/null
+        echo ""
+    done
+else
+    perf stat -ddd ${1} > /dev/null
+fi
