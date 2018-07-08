@@ -1,6 +1,6 @@
 #!/bin/bash
 
-RUNS=100
+RUNS=1
 
 make &> /dev/null || echo "make failed"
 
