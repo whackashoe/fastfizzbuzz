@@ -27,11 +27,11 @@ bin/%: haskell/%.hs
 bin/%: rust/%.rs
 	rustc $< -o $@
 
-asm/memcheat.s: asm/memcheat_gen.py fizzbuzz.txt
-	python asm/memcheat_gen.py > asm/memcheat.s
+asm/asm-memcheat.s: asm/memcheat_gen.py fizzbuzz.txt
+	python asm/memcheat_gen.py > asm/asm-memcheat.s
 
-fizzbuzz.txt: bin/ffb
-	./bin/ffb > fizzbuzz.txt
+fizzbuzz.txt: bin/cpp-ffb
+	./bin/cpp-ffb > fizzbuzz.txt
 
 clean:
 	$(RM) *.o haskell/*.o haskell/*.hi fizzbuzz.txt bin/*
