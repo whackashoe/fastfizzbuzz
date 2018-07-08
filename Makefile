@@ -9,7 +9,8 @@ all: bin/cpp-ffb \
 	 bin/asm-naive-parity \
 	 bin/asm-addition-parity \
 	 bin/asm-table \
-	 bin/haskell-naive
+	 bin/haskell-naive \
+	 bin/rust-naive
 
 bin/%: cpp/%.o
 	$(CXX) $(CXXFLAGS) $< -o $@
@@ -23,6 +24,9 @@ asm/%.o: asm/%.s
 bin/%: haskell/%.hs
 	ghc $< -o $@
 
+bin/%: rust/%.rs
+	rustc $< -o $@
+
 asm/memcheat.s: asm/memcheat_gen.py fizzbuzz.txt
 	python asm/memcheat_gen.py > asm/memcheat.s
 
@@ -30,4 +34,4 @@ fizzbuzz.txt: bin/ffb
 	./bin/ffb > fizzbuzz.txt
 
 clean:
-	$(RM) *.o fizzbuzz.txt bin/*
+	$(RM) *.o haskell/*.o haskell/*.hi fizzbuzz.txt bin/*
