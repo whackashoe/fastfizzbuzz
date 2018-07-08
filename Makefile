@@ -1,4 +1,4 @@
-CXXFLAGS:=-std=c++11 -O3
+CXXFLAGS:=-std=c++11 -O3 -march=native
 
 all: bin/ffb \
 	 bin/naive \
@@ -7,7 +7,8 @@ all: bin/ffb \
 	 bin/memcheat \
 	 bin/asm-naive \
 	 bin/asm-naive-parity \
-	 bin/asm-addition-parity
+	 bin/asm-addition-parity \
+	 bin/asm-table
 
 bin/%: cpp/%.o
 	$(CXX) $(CXXFLAGS) $< -o $@
