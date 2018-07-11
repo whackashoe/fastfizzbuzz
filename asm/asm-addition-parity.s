@@ -33,8 +33,8 @@ FizzBuzz:
 ###############################################################################
 .text
 
-			.globl _main
-_main:
+			.globl _start
+_start:
 			xorq %r12, %r12 # set main counter
 			movl $3, %r13d # set 3's counter
 			movl $5, %r14d # set 5's counter

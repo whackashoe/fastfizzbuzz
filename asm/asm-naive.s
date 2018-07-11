@@ -31,8 +31,8 @@ FizzBuzz:
 ###############################################################################
 .text
 
-			.globl _main
-_main:
+			.globl _start
+_start:
 			xorq %r12, %r12
 			movq $3, %r13
 			movq $5, %r14

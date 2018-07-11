@@ -45,8 +45,8 @@ FizzBuzz:
 ###############################################################################
 .text
 
-			.globl _main
-_main:
+			.globl _start
+_start:
 
 Initializing:
 			xorl %r12d, %r12d # counter
