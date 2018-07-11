@@ -34,7 +34,7 @@ bin/%: go/%.go
 asm/asm-memcheat.s: asm/memcheat_gen.py fizzbuzz.txt
 	python asm/memcheat_gen.py > asm/asm-memcheat.s
 
-fizzbuzz.txt: bin/cpp-ffb
+fizzbuzz.txt: bin/cpp-naive
 	./bin/cpp-ffb > fizzbuzz.txt
 
 clean:
