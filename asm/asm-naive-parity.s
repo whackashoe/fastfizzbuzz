@@ -14,6 +14,8 @@
 			.set STDOUT, 1
 			.set STDERR, 2
 
+			.set EXIT_SUCCESS, 0
+
 			.set ITERATIONS, 1000000
 ###############################################################################
 .data
@@ -73,7 +75,8 @@ PrintFizzBuzz:
 CheckCounter1:
 			cmpq $ITERATIONS, %r12
 			jne Loop
-Exit1:
+Exit:
+			mov  $EXIT_SUCCESS, %rdi
 			movl $SYS_EXIT, %eax
 			syscall
 PrintCounter:
@@ -104,6 +107,3 @@ PrintDecimalNumber:
 CheckCounter2:
 			cmpq $ITERATIONS, %r12
 			jne Loop
-Exit2:
-			movl $SYS_EXIT, %eax
-			syscall

@@ -14,6 +14,8 @@
 			.set STDOUT, 1
 			.set STDERR, 2
 
+			.set EXIT_SUCCESS, 0
+
 			.set ITERATIONS, 1000000
 ###############################################################################
 .data
@@ -108,5 +110,6 @@ PrintBuffer:
 			movl $SYS_WRITE, %eax
 			syscall
 Exit:
+			mov  $EXIT_SUCCESS, %rdi
 			movl $SYS_EXIT, %eax
 			syscall
