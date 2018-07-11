@@ -11,7 +11,6 @@ all: bin/cpp-ffb \
 	 bin/asm-table \
 	 bin/haskell-naive \
 	 bin/rust-naive \
-	 bin/rust-pattern-match \
 	 bin/go-naive
 
 bin/%: cpp/%.o
