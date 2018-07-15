@@ -5,7 +5,8 @@ all: cpp asm haskell rust go
 cpp:     bin/cpp-ffb bin/cpp-naive bin/cpp-counting bin/cpp-bitwise
 asm:     bin/asm-memcheat bin/asm-naive bin/asm-naive-parity \
 	     bin/asm-addition-parity bin/asm-table bin/asm-table-optimized \
-		 bin/asm-table-vitaut bin/asm-bitmask-vitaut
+		 bin/asm-table-vitaut bin/asm-table-mul bin/asm-bitmask-vitaut \
+		 bin/asm-bitmask-mul
 haskell: bin/haskell-naive
 rust:    bin/rust-naive
 go:      bin/go-naive
